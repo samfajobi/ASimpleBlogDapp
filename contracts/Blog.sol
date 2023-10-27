@@ -18,13 +18,23 @@ contract Blog {
         string description;
         uint created;
         uint updated;
+        Deactivated deleted;
     }
 
     mapping(uint => adress) public delPostOf;
     mapping(uint => address) public authorOf;
     mapping(address => uint) public postsOf;
      
-    event
+    PostStruct InactivePosts[];
+    PostStruct ActivePosts[];
+
+    event PostAction(
+        uint id,
+        string actionType,
+        uint timestamp,
+        address indexed executor,
+    )
+
     modifier onlyOwner() {
         require(msg.sender = owner, "You are not authorised to make changes");
     }
