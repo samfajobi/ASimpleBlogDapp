@@ -8,8 +8,8 @@ contract Blog {
     uint public activePostsCounter;
     uint public deletedPostsCounter;
     uint public totalPostsCounter;
-
-    enum Deactivated { YES, NO }
+    
+    enum Deactivated { NO,YES };
 
     struct PostStruct {
         uint id;
@@ -21,28 +21,28 @@ contract Blog {
         Deactivated deleted;
     }
 
-    mapping(uint => adress) public delPostOf;
+    mapping(uint => address) public delPostOf;
     mapping(uint => address) public authorOf;
-    mapping(address => uint) public postsOf;
-     
-    PostStruct InactivePosts[];
-    PostStruct ActivePosts[];
+    mapping(uint => address) public postsOf;
 
-    event PostAction(
+    event PostAction {
         uint id,
-        string actionType,
+        address executor,
         uint timestamp,
-        address indexed executor,
-    )
+        Deactivated deleted,
+        string actionType,
+    }
 
-    modifier onlyOwner() {
-        require(msg.sender = owner, "You are not authorised to make changes");
+    modifier ownerOnly() {
+        require(msg.sender == owner, "You are not auth)
     }
 
     constructor() {
         owner = msg.sender;
     }
     
+    
+
 }
 
 
