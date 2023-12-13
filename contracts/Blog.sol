@@ -34,15 +34,17 @@ contract Blog {
     }
 
     modifier ownerOnly() {
-        require(msg.sender == owner, "You are not auth)
+        require(msg.sender == owner, "You are not authorized")
     }
 
     constructor() {
         owner = msg.sender;
     }
-    
-    
 
+    function createPost() public view return() {
+
+    }
+    
 }
 
 
@@ -50,7 +52,7 @@ contract Blog {
 
 // mapping(address => uint) public balances 
 // balances[msg.sender] = 123;  --- (set data)
-// uint bal = balances [msg. sender];  --- (get data)
-// uint bal2 = balances [address (1)]; // 0
+// uint bal = balances[msg.sender];  --- (get data)
+// uint bal2 = balances[address(1)]; // 0
 // balances[msg.sender] += 456  --- (update data)
 // delete balances[msg.sender];  --- (delete data)
