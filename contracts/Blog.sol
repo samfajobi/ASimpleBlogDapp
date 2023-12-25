@@ -46,7 +46,21 @@ contract Blog {
       require(bytes(title).length > 0, "Title cannot be empty, fill in");
       require(bytes(description).length > 0, "Description cannot be empty");
 
-      
+      postCounter++;
+      authorOf[postCounter] = msg.sender;
+      postsOf[msg.sender]++;
+      activePostCounter++;
+
+      activePosts.push(
+         PostStruct(
+           postCounter,
+           msg.sender,
+           title,
+           description;
+           blockcreatedAt;
+            uint updatedAt;
+         )
+      )
    }
 }
 
