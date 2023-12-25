@@ -4,48 +4,53 @@ pragma solidity ^0.8.0;
 
 
 contract Blog {
-    address public owner;
-    uint public activePostsCounter;
-    uint public deletedPostsCounter;
-    uint public totalPostsCounter;
-    
-    enum Deactivated { NO,YES };
+   address public owner;
+   uint public activePostCounter;
+   uint public deletedPostCounter;
+   uint public totalPostCounter;
 
-    struct PostStruct {
-        uint id;
-        address author;
-        string title;
-        string description;
-        uint created;
-        uint updated;
-        Deactivated deleted;
-    }
+   struct PostStruct {
+      uint id;
+      address author;
+      string title;
+      string description;
+      uint createdAt;
+      uint updatedAt;
+   }
+   
+   enum DEACTIVATED {NO, YES }
 
-    mapping(uint => address) public delPostOf;
-    mapping(uint => address) public authorOf;
-    mapping(uint => address) public postsOf;
+   event PostAction (
+      uint id,
+      address executor,
+      uint timestamp, 
+      string actionType  
+   );
 
-    event PostAction {
-        uint id,
-        address executor,
-        uint timestamp,
-        Deactivated deleted,
-        string actionType,
-    }
+   modifier onlyOwner() {
+      require(owner == msg.sender, "Only the owner is allowed");
+      _;
+   }
 
-    modifier ownerOnly() {
-        require(msg.sender == owner, "You are not authorized")
-    }
+   mapping(uint => address) public authorOf;
+   mapping(address => uint) public postsOf;
 
-    constructor() {
-        owner = msg.sender;
-    }
+   PostStruct[] activePosts;
+   PostStruct[] inActivePosts;
 
-    function createPost() public view return() {
+   constructor() {
+      owner == msg.sender;
+   }
 
-    }
-    
+   function createPost(string memory title, string memory description) public view return(bool) {
+     
+   }
 }
+
+
+
+
+
 
 
 
