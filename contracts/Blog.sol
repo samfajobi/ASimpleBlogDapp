@@ -7,7 +7,7 @@ contract Blog {
    address public owner;
    uint public activePostCounter;
    uint public deletedPostCounter;
-   uint public totalPostCounter;
+   uint public postCounter;
 
    struct PostStruct {
       uint id;
@@ -42,8 +42,11 @@ contract Blog {
       owner == msg.sender;
    }
 
-   function createPost(string memory title, string memory description) public view return(bool) {
-     
+   function CreatePost(string memory title, string memory description ) public view return(bool) {
+      require(bytes(title).length > 0, "Title cannot be empty, fill in");
+      require(bytes(description).length > 0, "Description cannot be empty");
+
+      
    }
 }
 
